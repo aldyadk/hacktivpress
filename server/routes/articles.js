@@ -6,10 +6,10 @@ router.get('/',articlesController.getAll)
 
 router.get('/:id',articlesController.getOne)
 
-// router.get('/author/:param',articlesController.getByAuthor)
-//
-// router.get('/category/:param',articlesController.getByCategory)
-//
+router.get('/author/:author',articlesController.getByAuthor)
+
+router.get('/category/:category',articlesController.getByCategory)
+
 router.post('/',articlesController.create)
 
 router.put('/:id',articlesController.update)

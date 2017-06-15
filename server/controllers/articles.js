@@ -14,7 +14,7 @@ module.exports = {
     });
   },
   getOne: (req,res)=>{
-    Article.find({_id:req.params},(err,article)=>{
+    Article.findById(req.params.id,(err,article)=>{
       if(!err){
         res.send(article)
       } else {
@@ -56,9 +56,15 @@ module.exports = {
     })
   },
   remove:(req,res)=>{
-    Article.deleteOne({_id:req.params.id},(err,result)=>{
+    Article.find({_id:req.params.id},(err,article)=>{
       if(!err){
-        res.send(`Successfully delete article with id ${req.params.id} from collection ${result}`)
+        Article.remove({_id:req.params.id},(err,result)=>{
+          if(article.length==0){
+            res.send('article has already deleted')
+          } else {
+            res.send(`Successfully delete article with id ${req.params.id} from collection`)
+          }
+        })
       } else {
         res.send('there\'s no such ID')
       }
@@ -66,8 +72,8 @@ module.exports = {
   },
   getByAuthor:(req,res)=>{
     Article.find({author:req.params.author},(err,result)=>{
-      if(!err){
-        res.send(`Successfully delete article with id ${req.params.author} from collection ${result}`)
+      if(result.length!==0){
+        res.send(result)
       } else {
         res.send('there\'s no such author')
       }
@@ -75,8 +81,8 @@ module.exports = {
   },
   getByCategory:(req,res)=>{
     Article.find({category:req.params.category},(err,result)=>{
-      if(!err){
-        res.send(`Successfully delete article with id ${req.params.category} from collection ${result}`)
+      if(result.length!==0){
+        res.send(result)
       } else {
         res.send('there\'s no such category')
       }

@@ -12,7 +12,7 @@ var articleSchema = mongoose.Schema({
   },
   category:{
     type:String,
-    required:[true,'catrgory is required, must not empty']
+    required:[true,'category is required, must not empty']
   },
   author:{
     type:String,

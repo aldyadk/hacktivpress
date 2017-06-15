@@ -10,7 +10,7 @@ router.post('/',usersController.create)
 
 router.post('/login',usersController.login)
 
-router.delete('/',usersController.remove)
+router.delete('/:id',usersController.remove)
 
 
 module.exports = router;

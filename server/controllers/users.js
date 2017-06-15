@@ -19,7 +19,7 @@ module.exports = {
       if(!err){
         res.send(user)
       } else {
-        res.send('username not found')
+        res.send('user not found')
       }
     })
   },
@@ -38,9 +38,9 @@ module.exports = {
     })
   },
   login:(req,res)=>{
-    User.findOne({username:req.body.username},(err,user)=>{
-      if(!err){
-        if(req.body.password == simplecrypt({password:'secret'}).encrypt(req.body.password)){
+    User.find({username:req.body.username},(err,user)=>{
+      if(user.length!==0){
+        if(req.body.password == simplecrypt({password:'secret'}).decrypt(user.password)){
           res.send(user)
         } else {
           res.send('password is wrong')
@@ -51,9 +51,15 @@ module.exports = {
     });
   },
   remove:(req,res)=>{
-    User.deleteOne({_id:req.params.id},(err,result)=>{
-      if(!err){
-        res.send(`Successfully delete user with id ${req.params.id} from collection ${result}`)
+    User.find({_id:req.params.id},(err,user)=>{
+      if(user.length!==0){
+        User.remove({_id:req.params.id},(err,result)=>{
+          if(user.length==0){
+            res.send('user has already deleted')
+          } else {
+            res.send(`Successfully delete user with id ${req.params.id} from collection`)
+          }
+        })
       } else {
         res.send('there\'s no such ID')
       }
