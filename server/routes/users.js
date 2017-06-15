@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router()
-const usersController = require('../controllers/usersController');
+const usersController = require('../controllers/users');
 
 router.get('/',usersController.getAll)
 
@@ -8,9 +8,7 @@ router.get('/:id',usersController.getOne)
 
 router.post('/',usersController.create)
 
-router.post('/register',usersController.create)
-
-router.post('/login',usersController.create)
+router.post('/login',usersController.login)
 
 
 module.exports = router;
