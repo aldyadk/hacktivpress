@@ -10,5 +10,7 @@ router.post('/',usersController.create)
 
 router.post('/login',usersController.login)
 
+router.delete('/',usersController.remove)
+
 
 module.exports = router;

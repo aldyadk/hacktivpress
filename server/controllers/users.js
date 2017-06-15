@@ -14,6 +14,15 @@ module.exports = {
       }
     });
   },
+  getOne: (req,res)=>{
+    User.find({_id:req.params.id},(err,user)=>{
+      if(!err){
+        res.send(user)
+      } else {
+        res.send('username not found')
+      }
+    })
+  },
   create:(req,res)=>{
     if(req.body.password){password=simplecrypt({password:'secret'}).encrypt(req.body.password)}else{password=req.body.password}
     let user = new User({
@@ -41,4 +50,13 @@ module.exports = {
       }
     });
   },
+  remove:(req,res)=>{
+    User.deleteOne({_id:req.params.id},(err,result)=>{
+      if(!err){
+        res.send(`Successfully delete user with id ${req.params.id} from collection ${result}`)
+      } else {
+        res.send('there\'s no such ID')
+      }
+    })
+  }
 };
