@@ -1,0 +1,26 @@
+{
+  "name": "hacktivpress",
+  "version": "1.0.0",
+  "description": "live code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aldyadk/hacktivpress.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aldyadk/hacktivpress/issues"
+  },
+  "homepage": "https://github.com/aldyadk/hacktivpress#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.28",
+    "mongoose": "^4.10.6"
+  }
+}
